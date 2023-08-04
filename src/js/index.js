@@ -15,11 +15,11 @@ selectEl.addEventListener('change', onSelectCat);
 fetchBreeds()
   .then(breeds => {
     renderSelect(breeds);
-    loaderEl.classList.add('.is-hidden');
-    selectEl.classList.remove('.is-hidden');
+    loaderEl.classList.add('is-hidden');
+    selectEl.classList.remove('is-hidden');
   })
   .catch(() => {
-    loaderEl.classList.add('.is-hidden');
+    loaderEl.classList.add('is-hidden');
     Notify.failure(errorEl.textContent)
   })
 
@@ -36,19 +36,17 @@ function renderSelect(breeds) {
 }
 
 function onSelectCat(event) {
-  loaderEl.classList.remove('.is-hidden');
-  infoCatEl.classList.add('.is-hidden');
+  loaderEl.classList.remove('is-hidden');
+  infoCatEl.classList.add('is-hidden');
   const breedId = event.currentTarget.value;
   fetchCatByBreed(breedId)
     .then(breeds => {
-      infoCatEl.classList.remove('.is-hidden');
-      loaderEl.classList.add('.is-hidden');
+      infoCatEl.classList.remove('is-hidden');
+      loaderEl.classList.add('is-hidden');
       renderCardCat(breeds);
     })
     .catch(() => {
-      // infoCatEl.classList.add('.is-hidden');
-      // errorEl.classList.remove('.is-hidden');
-      loaderEl.classList.add('.is-hidden');
+      loaderEl.classList.add('is-hidden');
       Notify.failure(errorEl.textContent)
     })
 
@@ -74,18 +72,3 @@ function renderCardCat(breeds) {
     .join();
   infoCatEl.innerHTML = markup;
 }
-// з'являється зображення і розгорнута інформація про кота: назва породи, опис і темперамент.
-// function renderUserList(users) {
-//   const markup = users
-//     .map((user) => {
-//       return `
-//           <li>
-//             <p><b>Name</b>: ${user.name}</p>
-//             <p><b>Email</b>: ${user.email}</p>
-//             <p><b>Company</b>: ${user.company.name}</p>
-//           </li>
-//       `;
-//     })
-//     .join("");
-//   userList.innerHTML = markup;
-// }
