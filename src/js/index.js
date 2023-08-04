@@ -6,21 +6,17 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 const selectEl = document.querySelector('.breed-select');
 const infoCatEl = document.querySelector('.cat-info');
 const errorEl = document.querySelector('.error');
-const loaderEl = document.querySelector('.loader-box');
+const loaderEl = document.querySelector('.loader');
 
-// errorEl.hidden = true
-// loaderEl.classList.remove('.is-hidden');
-// infoCatEl.classList.add('.is-hidden');
-// selectEl.classList.add('.is-hidden');
-// errorEl.classList.add('.is-hidden');
+loaderEl.classList.remove('.is-hidden');
 
 selectEl.addEventListener('change', onSelectCat);
 
 fetchBreeds()
   .then(breeds => {
     renderSelect(breeds);
-    loaderEl.classList.remove('.is-hidden');
-    selectEl.classList.add('.is-hidden');
+    loaderEl.classList.add('.is-hidden');
+    selectEl.classList.remove('.is-hidden');
   })
   .catch(() => {
     loaderEl.classList.add('.is-hidden');
